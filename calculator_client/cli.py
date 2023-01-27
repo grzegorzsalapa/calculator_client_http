@@ -1,7 +1,6 @@
 from calculator_client import Calculator, CalculationError
 
 
-
 def main():
     server_address = _ask_for_server_address()
     calculator = Calculator(server_address)

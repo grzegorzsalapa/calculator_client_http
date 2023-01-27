@@ -17,7 +17,7 @@ def test_that_received_result_on_socket_is_passed_properly_as_a_result_to_calcul
 
     socket_mock = _set_up_mocked_calculator_socket(recv_value=b'6')
 
-    with patch('calculator_client.TCP_client.socket', new=socket_mock):
+    with patch('calculator_client.http_client.socket', new=socket_mock):
         rc = Calculator('127.0.0.1')
         assert rc.calculate('2+2*2') == '6'
 
@@ -36,7 +36,7 @@ def test_that_correct_binary_representation_of_expression_is_sent_on_socket():
 
     socket_mock = _set_up_mocked_calculator_socket(recv_value=b'6')
 
-    with patch('calculator_client.TCP_client.socket', new=socket_mock):
+    with patch('calculator_client.http_client.socket', new=socket_mock):
         rc = Calculator('127.0.0.1')
         rc.calculate('(2+2)*5/7-3+sde')
         socket_mock.socket().sendall.assert_called_once_with(b'(2+2)*5/7-3+sde')
@@ -56,7 +56,7 @@ def test_that_server_address_is_passed_to_socket():
 
     socket_mock = _set_up_mocked_calculator_socket(recv_value=b'6')
 
-    with patch('calculator_client.TCP_client.socket', new=socket_mock):
+    with patch('calculator_client.http_client.socket', new=socket_mock):
         rc = Calculator('127.0.0.1')
         rc.calculate('(2+2)*5/7-3+sde')
         socket_mock.socket().connect.assert_called_once_with(('127.0.0.1', 9010))
@@ -77,7 +77,7 @@ def test_that_returned_error_message_is_converted_to_exception():
     socket_mock = _set_up_mocked_calculator_socket(recv_value=b'Example error message.')
 
     with pytest.raises(CalculationError, match=r"Example error message."):
-        with patch('calculator_client.TCP_client.socket', new=socket_mock):
+        with patch('calculator_client.http_client.socket', new=socket_mock):
             rc = Calculator('127.0.0.1')
             rc.calculate('(2+2)*5/7-3+sde')
 
@@ -98,7 +98,7 @@ def test_timeout_when_no_connection():
 
     with pytest.raises(CalculationError, match=r"Several attempts to access the remote calculator failed.\n"
                                                "Try again..."):
-        with patch('calculator_client.TCP_client.socket', new=socket_mock):
+        with patch('calculator_client.http_client.socket', new=socket_mock):
             rc = Calculator('127.0.0.1')
             rc.remote_service.sleep_time = 0
             rc.calculate('any')

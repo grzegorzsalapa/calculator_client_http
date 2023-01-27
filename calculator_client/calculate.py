@@ -1,4 +1,4 @@
-from .TCP_client import RemoteService, RemoteCalculationError
+from .http_client import RemoteService, RemoteCalculationError
 
 
 class CalculationError(Exception):
