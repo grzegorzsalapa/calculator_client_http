@@ -1,1 +1,1 @@
-from calculator_client.calculate import Calculator
+from calculator_client.http_client import CalculationService
