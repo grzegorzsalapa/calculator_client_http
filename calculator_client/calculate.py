@@ -1,12 +1,6 @@
 from .http_client import RemoteService, RemoteCalculationError
 
 
-class CalculationError(Exception):
-
-    def __init__(self, message: str):
-        self.message = message
-
-
 class Calculator:
 
     def __init__(self, server_address):
@@ -16,9 +10,6 @@ class Calculator:
     def calculate(self, expression: str):
         try:
             return self.remote_service.calculate(expression)
-
-        except RemoteCalculationError as e:
-            raise CalculationError(str(e))
 
         except TimeoutError as e:
             raise CalculationError(str(e))
