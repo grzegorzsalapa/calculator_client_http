@@ -6,8 +6,11 @@ def main():
     calculator = CalculationService(server_address)
     try:
         while True:
+            try:
+                _ask_for_option_choice(calculator)
 
-            _ask_for_option_choice(calculator)
+            except Exception as e:
+                print("Unexpected error occurred:", str(e))
 
     except KeyboardInterrupt:
         print("\rBye")
@@ -17,6 +20,7 @@ def _ask_for_server_address():
     server_address = input("\nProvide calculation server address:\n")
     print('')
     return server_address
+
 
 def _ask_for_option_choice(calculator):
     selection = input("What would you like to do:\n"
@@ -39,7 +43,7 @@ def _ask_for_option_choice(calculator):
         _print_calculations(calculations)
 
     else:
-        _ask_for_option_choice()
+        print(f'"{selection}" is not a valid option. Try again.\n')
 
 
 def _ask_for_calculation_id():

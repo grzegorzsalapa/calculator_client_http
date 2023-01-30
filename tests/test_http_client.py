@@ -10,12 +10,14 @@ def test_returns_correct_expression_result():
         resp1 = responses.Response(
             method="POST",
             url="http://127.0.0.1:8080/calculations",
+            status=201,
             json={"url": "/calculations/1"}
         )
 
         resp2 = responses.Response(
             method="GET",
             url="http://127.0.0.1:8080/calculations/1",
+            status=302,
             json=[{"id": "1", "expression": "2 + 2", "result": "4"}]
         )
 
@@ -29,11 +31,12 @@ def test_returns_correct_expression_result():
 
 
 @responses.activate
-def test_returns_calculation_results_bi_id():
+def test_returns_calculation_results_by_id():
 
     resp1 = responses.Response(
         method="GET",
         url="http://127.0.0.1:8080/calculations/5",
+        status=302,
         json=[{"id": "1", "expression": "2 + 2", "result": "4"}]
     )
 
@@ -49,6 +52,7 @@ def test_returns_all_calculation_results():
     resp1 = responses.Response(
         method="GET",
         url="http://127.0.0.1:8080/calculations",
+        status=302,
         json=[{"id": "1", "expression": "2 + 2", "result": "4"},
               {"id": "2", "expression": "3 + 3", "result": "6"},
               {"id": "3", "expression": "4 + 4", "result": "8"}]
