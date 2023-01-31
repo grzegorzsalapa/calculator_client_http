@@ -26,7 +26,8 @@ def _ask_for_option_choice(calculator):
     selection = input("What would you like to do:\n"
                       "- calculate expression (c)\n"
                       "- show all calculations you made (a)\n"
-                      "- show calculation providing its id (i)\n")
+                      "- show calculation providing its id (i)\n"
+                      "Press CTRL+C to quit.\n")
 
     if selection == "c":
         expression = _ask_for_expression()
