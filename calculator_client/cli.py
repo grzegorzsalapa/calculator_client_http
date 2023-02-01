@@ -23,7 +23,7 @@ def _ask_for_server_address():
 
 
 def _ask_for_option_choice(calculator):
-    selection = input("What would you like to do:\n"
+    selection = input("\nWhat would you like to do:\n"
                       "- calculate expression (c)\n"
                       "- show all calculations you made (a)\n"
                       "- show calculation providing its id (i)\n"

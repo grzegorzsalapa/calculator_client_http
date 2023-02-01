@@ -40,6 +40,7 @@ class CalculationService:
 
         url = f'http://{self.server_address}:{self.PORT}/calculations'
         r = requests.get(url)
+        print(r.content)
         payload = r.json()
         if r.status_code != 302:
             return _get_error_message_from_payload(payload)
@@ -71,4 +72,8 @@ def _get_result_from_payload(calc_list):
 
 def _get_error_message_from_payload(payload):
 
-    return [payload['detail']]
+    try:
+        return [payload['detail']]
+
+    except Exception as e:
+        raise NameError('Returned error message contains no details.')
