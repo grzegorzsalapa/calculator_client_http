@@ -40,7 +40,6 @@ class CalculationService:
 
         url = f'http://{self.server_address}:{self.PORT}/calculations'
         r = requests.get(url)
-        print(r.content)
         payload = r.json()
         if r.status_code != 302:
             return _get_error_message_from_payload(payload)
