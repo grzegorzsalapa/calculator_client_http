@@ -1,6 +1,7 @@
 # Calculator client (http)
 
-Small TCP client application to communicate with "calculator_server_FastAPI".
+Simple client CLI application to communicate with calculator server (it works with both: "calculator_server_http" and "
+calculator_server_FastAPI"). In the latest version it is based on Requests.
 
 ## How to run
 
