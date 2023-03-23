@@ -26,4 +26,3 @@ calculator_server_FastAPI"). In the latest version it is based on Requests.
 ## Requirements
 
 All packages required to run calculator module are specified in pyproject.toml file.
-
